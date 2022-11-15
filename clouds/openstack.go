@@ -6,16 +6,17 @@ import (
 	"strings"
 )
 
-func DetectOpenStack() bool {
+func DetectOpenStack() (is bool) {
 	if runtime.GOOS != "windows" {
 		data, err := ioutil.ReadFile("/sys/class/dmi/id/sys_vendor")
 		if err != nil {
-			return false
+			return
 		}
 		if strings.Contains(string(data), "OpenStack Foundation") {
-			return true
+			is = true
+			return
 		}
-		return false
+		return
 	}
-	return false
+	return
 }

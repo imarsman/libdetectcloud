@@ -6,10 +6,11 @@ import (
 	"github.com/imarsman/libdetectcloud/internal/util"
 )
 
-func DetectAzure() bool {
+func DetectAzure() (is bool) {
 	resp, err := util.Client().Get("http://169.254.169.254/metadata/v1/InstanceInfo")
 	if err == nil && resp.StatusCode == http.StatusOK {
-		return true
+		is = true
+		return
 	}
-	return false
+	return
 }
