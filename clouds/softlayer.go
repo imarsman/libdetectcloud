@@ -6,10 +6,10 @@ import (
 	"github.com/imarsman/libdetectcloud/internal/util"
 )
 
-func DetectSoftlayer() string {
+func DetectSoftlayer() bool {
 	resp, err := util.Client().Get("https://api.service.softlayer.com/rest/v3/SoftLayer_Resource_Metadata/UserMetadata.txt")
 	if err == nil && (resp.StatusCode == http.StatusOK || resp.StatusCode == http.StatusNotFound) {
-		return "SoftLayer"
+		return true
 	}
-	return ""
+	return false
 }

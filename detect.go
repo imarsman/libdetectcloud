@@ -1,9 +1,6 @@
 package libdetectcloud
 
 import (
-	"net/http"
-	"time"
-
 	"github.com/imarsman/libdetectcloud/clouds"
 )
 
@@ -16,52 +13,39 @@ const (
 	softLayer           = "SoftLayer"
 	vultr               = "Vultr"
 	container           = "Container"
+	k8SContainer        = "K8S Container"
 )
 
-var hc = &http.Client{Timeout: 300 * time.Millisecond}
-
-// cloudTypes type
-// type cloudTypes struct {
-// 	aws       string
-// 	azure     string
-// 	do        string
-// 	gce       string
-// 	ost       string
-// 	sl        string
-// 	vr        string
-// 	container string
-// }
-
 func IsOnAWS() bool {
-	return clouds.DetectAWS() == aws
+	return clouds.DetectAWS()
 }
 
 func IsOnAzure() bool {
-	return clouds.DetectAzure() == azure
+	return clouds.DetectAzure()
 }
 
 func IsOnDigitalOcean() bool {
-	return clouds.DetectDigitalOcean() == digitalOcean
+	return clouds.DetectDigitalOcean()
 }
 
 func IsOnGce() bool {
-	return clouds.DetectGCE() == googleComputeEngine
+	return clouds.DetectGCE()
 }
 
 func IsOnKube() bool {
-	return clouds.DetectContainer() == container
+	return clouds.DetectContainer()
 }
 
 func IsOnOpenstack() bool {
-	return clouds.DetectOpenStack() == openStackFoundation
+	return clouds.DetectOpenStack()
 }
 
 func IsOnSoftlayer() bool {
-	return clouds.DetectSoftlayer() == softLayer
+	return clouds.DetectSoftlayer()
 }
 
 func IsOnVultr() bool {
-	return clouds.DetectVultr() == vultr
+	return clouds.DetectVultr()
 }
 
 // // Detect function

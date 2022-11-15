@@ -5,10 +5,10 @@ import (
 	"strings"
 )
 
-func DetectContainer() string {
+func DetectContainer() bool {
 	b, err := ioutil.ReadFile("/proc/self/cgroup")
 	if err != nil {
-		return ""
+		return false
 	}
 
 	fc := string(b)
@@ -16,12 +16,12 @@ func DetectContainer() string {
 	container := strings.Contains(fc, "containerd")
 
 	if kube {
-		return "K8S Container"
+		return true
 	}
 
 	if container {
-		return "Container"
+		return true
 	}
 
-	return ""
+	return false
 }

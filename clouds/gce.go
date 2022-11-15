@@ -6,18 +6,18 @@ import (
 	"github.com/imarsman/libdetectcloud/internal/util"
 )
 
-func DetectGCE() string {
+func DetectGCE() bool {
 	r, err := http.NewRequest("GET", "http://metadata.google.internal/computeMetadata/v1/instance/tags", nil)
 	if err != nil {
-		return ""
+		return false
 	}
 	r.Header.Add("Metadata-Flavor", "Google")
 	resp, err := util.Client().Do(r)
 	if err != nil {
-		return ""
+		return false
 	}
 	if resp.StatusCode == http.StatusOK {
-		return "Google Compute Engine"
+		return true
 	}
-	return ""
+	return false
 }
