@@ -1,4 +1,4 @@
-package libdetectcloud
+package clouds
 
 import (
 	"io/ioutil"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func detectOpenStack() string {
+func DetectOpenStack() string {
 	if runtime.GOOS != "windows" {
 		data, err := ioutil.ReadFile("/sys/class/dmi/id/sys_vendor")
 		if err != nil {

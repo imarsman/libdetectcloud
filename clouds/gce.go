@@ -1,16 +1,18 @@
-package libdetectcloud
+package clouds
 
 import (
 	"net/http"
+
+	"github.com/imarsman/libdetectcloud/internal/util"
 )
 
-func detectGCE() string {
+func DetectGCE() string {
 	r, err := http.NewRequest("GET", "http://metadata.google.internal/computeMetadata/v1/instance/tags", nil)
 	if err != nil {
 		return ""
 	}
 	r.Header.Add("Metadata-Flavor", "Google")
-	resp, err := hc.Do(r)
+	resp, err := util.Client().Do(r)
 	if err != nil {
 		return ""
 	}

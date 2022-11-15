@@ -1,11 +1,11 @@
-package libdetectcloud
+package clouds
 
 import (
 	"io/ioutil"
 	"strings"
 )
 
-func detectContainer() string {
+func DetectContainer() string {
 	b, err := ioutil.ReadFile("/proc/self/cgroup")
 	if err != nil {
 		return ""
