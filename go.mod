@@ -1,3 +1,3 @@
-module github.com/perlogix/libdetectcloud
+module github.com/imarsman/libdetectcloud
 
 go 1.16
